@@ -37,13 +37,12 @@ public class mainController {
     @RequestMapping(value = "/api/cars/{manufacturer}" , method = RequestMethod.GET)
     @ResponseBody
 
-    public Iterable<auto> giveAllAutosForFabrikant(@PathVariable("fabrikant")String fabrikant){
-        if (autoDao.equals(fabrikant)){
-        auto autoEen = autoDao.findAll(fabrikant).get();
-
-        return autoEen.getFabrikant();
-        }
-    return new ArrayList<fabrikant>();
+    public Iterable<auto> givaAllAutoForFabrikant(@PathVariable("fabrikant")String fabrikant){
+    if (autoDao.equals(fabrikant)){
+        auto autoeen = autoDao.findAll(fabrikant).get();
+        return autoeen.getFabrikant();
+    }
+        return new ArrayList<auto>();
     }
 
 
@@ -57,6 +56,7 @@ public class mainController {
 
 
     @RequestMapping(value = "/api/customers/new", method = RequestMethod.POST)
+    @ResponseBody
 
     public HttpStatus nieuwHuurder(@RequestParam("voornaam")String voornaam,
                                    @RequestParam("achternaam") String achternaam,
@@ -75,5 +75,12 @@ public class mainController {
     }
 
 
+    @RequestMapping(value = "/api/cars/now", method = RequestMethod.GET)
+    @ResponseBody
+
+
+    public Iterable<verhuurder> findAllVerhuurderTwee(){
+        return verhuurderDao.findAll();
+    }
 
 }
